@@ -1,0 +1,24 @@
+# Spring boot application
+spring:
+  application:
+    name: bonz-manage-dubbo-server-house-resources
+
+  # database
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.159.130:3306/bonz?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+    username: root
+    password: root
+
+# dubbo
+dubbo:
+  scan:
+    base-packages: en.upenn.bonz.dubbo.server.api
+  application:
+    name: dubbo-provider-house-resources
+  protocol:
+    name: dubbo
+    port: 20880
+  registry:
+    address: zookeeper://192.168.159.130:2181
+    client: zkclient

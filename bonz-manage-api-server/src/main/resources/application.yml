@@ -1,0 +1,46 @@
+# Spring boot application
+spring:
+  application:
+    name: bonz-manage-api-server
+
+  # redis
+  redis:
+    jedis:
+      pool:
+        max-wait: 5000
+        max-idle: 100
+        min-idle: 10
+    timeout: 10
+    cluster:
+      nodes: 192.168.159.130:6379, 192.168.159.130:6380, 195.168.159.130:6381
+      max-redirects: 5
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 20MB
+      max-file-size: 50MB
+      max-request-size: 100MB
+
+# dubbo
+dubbo:
+  application:
+    name: dubbo-consumer-bonz-manage
+
+  # zk
+  registry:
+    address: zookeeper://192.168.159.130:2181
+    client: zkclient
+
+# aws-s3
+cloud:
+  aws:
+    credentials:
+      access-key: AKIAUCNWMYGKCCAPIVDL
+      secret-key: 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
+    region:
+      static: us-east-1
+    stack:
+      auto: false
+application:
+  bucket:
+    name: bonz-house-project
