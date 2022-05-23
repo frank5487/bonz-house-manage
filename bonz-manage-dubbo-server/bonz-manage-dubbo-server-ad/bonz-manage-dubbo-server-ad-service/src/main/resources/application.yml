@@ -12,7 +12,7 @@ spring:
 # dubbo
 dubbo:
   scan:
-    base-packages: en.upenn.bonz.dubbo.server.api
+    basePackages: en.upenn.bonz.dubbo.server.api
   application:
     name: dubbo-provider-ad
   protocol:
