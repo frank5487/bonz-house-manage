@@ -2,7 +2,6 @@
 spring:
   application:
     name: bonz-manage-api-server
-
   # redis
   redis:
     jedis:
@@ -20,6 +19,9 @@ spring:
       file-size-threshold: 20MB
       max-file-size: 50MB
       max-request-size: 100MB
+
+server:
+  port: 18080
 
 # dubbo
 dubbo:

@@ -1,4 +1,4 @@
-package en.upenn.bonz.haoke.dubbo.server;
+package en.upenn.bonz.dubbo.server;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

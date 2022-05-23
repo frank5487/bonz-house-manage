@@ -2,7 +2,6 @@
 spring:
   application:
     name: bonz-manage-dubbo-server-house-resources
-
   # database
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -13,7 +12,7 @@ spring:
 # dubbo
 dubbo:
   scan:
-    base-packages: en.upenn.bonz.dubbo.server.api
+    basePackages: en.upenn.bonz.dubbo.server.api
   application:
     name: dubbo-provider-house-resources
   protocol:
