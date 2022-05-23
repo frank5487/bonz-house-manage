@@ -19,7 +19,7 @@ public class PicUploadController {
 
     @PostMapping
     @ResponseBody
-    public PicUploadResult upload(@RequestParam("file")MultipartFile multipartFile) {
+    public PicUploadResult upload(@RequestParam("file") MultipartFile multipartFile) {
         return picUploadS3Service.upload(multipartFile);
     }
 }

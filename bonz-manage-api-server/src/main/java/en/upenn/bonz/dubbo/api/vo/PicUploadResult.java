@@ -2,6 +2,9 @@ package en.upenn.bonz.dubbo.api.vo;
 
 import lombok.Data;
 
+/**
+ * data format was defined by Ant-Design Pro
+ */
 @Data
 public class PicUploadResult {
 
