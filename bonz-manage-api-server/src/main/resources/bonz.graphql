@@ -5,6 +5,7 @@ schema {
 type BonzQuery {
     HouseResources(id: Long): HouseResources
     HouseResourcesList(page: Int, pageSize: Int): TableResult
+    IndexAdList: IndexAdResult
 }
 
 type HouseResources {
@@ -41,4 +42,12 @@ type Pagination {
     current: Int
     pageSize: Int
     total: Int
+}
+
+type IndexAdResult{
+    list: [IndexAdResultData]
+}
+
+type IndexAdResultData{
+    original: String
 }
