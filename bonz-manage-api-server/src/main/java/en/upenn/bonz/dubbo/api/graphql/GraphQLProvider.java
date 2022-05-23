@@ -15,6 +15,7 @@ import org.springframework.util.ResourceUtils;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
  * load GraphQL object into Spring container
@@ -26,7 +27,7 @@ public class GraphQLProvider {
     private GraphQL graphQL;
 
     @Autowired
-    private HouseResourcesService houseResourcesService;
+    private List<MyDataFetcher> myDataFetchers;
 
     /**
      * init graphQL instance
@@ -50,11 +51,13 @@ public class GraphQLProvider {
 
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
-                .type("BonzQuery", builder ->
-                    builder.dataFetcher("HouseResources", environment ->{
-                        Long id = environment.getArgument("id");
-                        return houseResourcesService.queryHouseResourcesById(id);
-                    })
+                .type("BonzQuery", builder -> {
+                        for (MyDataFetcher myDataFetcher : myDataFetchers) {
+                            builder.dataFetcher(myDataFetcher.fieldName(), environment ->
+                                    myDataFetcher.dataFetcher(environment));
+                        }
+                        return builder;
+                    }
                 )
                 .build();
     }
