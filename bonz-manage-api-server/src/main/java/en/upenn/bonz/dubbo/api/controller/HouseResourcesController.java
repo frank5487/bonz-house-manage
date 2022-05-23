@@ -1,6 +1,7 @@
 package en.upenn.bonz.dubbo.api.controller;
 
 import en.upenn.bonz.dubbo.api.service.HouseResourcesService;
+import en.upenn.bonz.dubbo.api.vo.TableResult;
 import en.upenn.bonz.dubbo.server.pojo.HouseResources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,14 +36,25 @@ public class HouseResourcesController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
+    @GetMapping
+    @ResponseBody
+    public ResponseEntity<TableResult<HouseResources>> list(HouseResources houseResources,
+                                            @RequestParam(name = "currentPage", defaultValue = "1") Integer currentPage,
+                                            @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
+        return ResponseEntity.ok(houseResourcesService.queryList(houseResources, currentPage, pageSize));
+    }
+
 
     /**
      * test
      * @return
      */
+    /*
     @GetMapping
     @ResponseBody
     public ResponseEntity<String> get() {
         return ResponseEntity.ok("ok");
     }
+    */
+
 }

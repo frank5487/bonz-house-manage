@@ -1,8 +1,11 @@
 package en.upenn.bonz.dubbo.api.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import en.upenn.bonz.dubbo.api.vo.Pagination;
+import en.upenn.bonz.dubbo.api.vo.TableResult;
 import en.upenn.bonz.dubbo.server.api.ApiHouseResourcesService;
 import en.upenn.bonz.dubbo.server.pojo.HouseResources;
+import en.upenn.bonz.dubbo.server.vo.PageInfo;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,5 +18,11 @@ public class HouseResourcesService {
         int result = apiHouseResourcesService.saveHouseResources(houseResources);
 
         return result == 1;
+    }
+
+    public TableResult<HouseResources> queryList(HouseResources houseResources, int currentPage, int pageSize) {
+        PageInfo<HouseResources> pageInfo = apiHouseResourcesService.queryHouseResourcesList(currentPage, pageSize, houseResources);
+
+        return new TableResult<>(pageInfo.getRecords(), new Pagination(currentPage, pageSize, pageInfo.getTotal()));
     }
 }
