@@ -21,4 +21,9 @@ public class ApiHouseResourcesServiceImpl implements ApiHouseResourcesService{
     public PageInfo<HouseResources> queryHouseResourcesList(int page, int pageSize, HouseResources queryCondition) {
         return houseResourcesService.queryHouseResourcesList(page, pageSize, queryCondition);
     }
+
+    @Override
+    public HouseResources queryHouseResourcesById(Long id) {
+        return houseResourcesService.queryHouseResourcesById(id);
+    }
 }

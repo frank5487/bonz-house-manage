@@ -36,6 +36,13 @@ public class HouseResourcesController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
+    /**
+     * pagination for house resources
+     * @param houseResources
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
     @GetMapping
     @ResponseBody
     public ResponseEntity<TableResult<HouseResources>> list(HouseResources houseResources,

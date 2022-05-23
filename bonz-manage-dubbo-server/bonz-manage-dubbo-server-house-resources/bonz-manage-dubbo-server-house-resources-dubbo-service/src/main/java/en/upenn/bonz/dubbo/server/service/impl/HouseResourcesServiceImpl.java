@@ -37,4 +37,9 @@ public class HouseResourcesServiceImpl extends BaseServiceImpl<HouseResources> i
 
         return new PageInfo<HouseResources>(Long.valueOf(iPage.getTotal()).intValue(), page, pageSize, iPage.getRecords());
     }
+
+    @Override
+    public HouseResources queryHouseResourcesById(Long id) {
+        return super.queryById(id);
+    }
 }
