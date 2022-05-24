@@ -15,4 +15,6 @@ public interface ApiHouseResourcesService {
     PageInfo<HouseResources> queryHouseResourcesList(int page, int pageSize, HouseResources queryCondition);
 
     HouseResources queryHouseResourcesById(Long id);
+
+    boolean updateHouseResources(HouseResources houseResources);
 }

@@ -42,4 +42,9 @@ public class HouseResourcesServiceImpl extends BaseServiceImpl<HouseResources> i
     public HouseResources queryHouseResourcesById(Long id) {
         return super.queryById(id);
     }
+
+    @Override
+    public boolean updateHouseResources(HouseResources houseResources) {
+        return super.update(houseResources) == 1;
+    }
 }

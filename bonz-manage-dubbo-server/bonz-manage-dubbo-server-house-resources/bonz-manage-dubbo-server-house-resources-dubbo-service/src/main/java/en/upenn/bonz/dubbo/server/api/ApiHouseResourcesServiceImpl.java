@@ -26,4 +26,9 @@ public class ApiHouseResourcesServiceImpl implements ApiHouseResourcesService{
     public HouseResources queryHouseResourcesById(Long id) {
         return houseResourcesService.queryHouseResourcesById(id);
     }
+
+    @Override
+    public boolean updateHouseResources(HouseResources houseResources) {
+        return houseResourcesService.updateHouseResources(houseResources);
+    }
 }

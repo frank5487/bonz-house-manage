@@ -53,6 +53,25 @@ public class HouseResourcesController {
 
 
     /**
+     * update house resources
+     * @param houseResources
+     * @return
+     */
+    @PutMapping
+    @ResponseBody
+    public ResponseEntity<Void> update(@RequestBody HouseResources houseResources) {
+        try {
+            boolean bool = houseResourcesService.update(houseResources);
+            if (bool) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+    /**
      * test
      * @return
      */
