@@ -2,6 +2,7 @@ package en.upenn.bonz.dubbo.api.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import graphql.ExecutionInput;
 import graphql.GraphQL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,17 +27,48 @@ public class GraphQLController {
      * @param query
      * @return
      */
+    /*
     @GetMapping
     @ResponseBody
     public Map<String, Object> query(@RequestParam("query") String query) {
         return graphQL.execute(query).toSpecification();
     }
+     */
+
+    /**
+     * add variables while querying
+     * @param query
+     * @param variablesJson
+     * @param operationName
+     * @return
+     */
+    @GetMapping
+    @ResponseBody
+    public Map<String, Object> query(@RequestParam("query") String query,
+                                     @RequestParam(value = "variables", required = false) String variablesJson,
+                                     @RequestParam(value = "operationName", required = false) String operationName) {
+        try {
+            Map<String, Object> variables = MAPPER.readValue(variablesJson, MAPPER.getTypeFactory()
+                    .constructMapType(HashMap.class, String.class, Object.class));
+
+            return executeQuery(query, operationName, variables);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Map<String, Object> error = new HashMap<>();
+        error.put("status", 500);
+        error.put("msg", "fail...");
+        return error;
+    }
+
 
     /**
      * post GrahphQL query
      * @param query
      * @return
      */
+    /*
     @PostMapping("/ad")
     @ResponseBody
     public Map<String, Object> postQuery(@RequestBody String json) {
@@ -55,5 +87,36 @@ public class GraphQLController {
         error.put("msg", "fail...");
 
         return error;
+    }
+     */
+
+    @PostMapping("/ad")
+    @ResponseBody
+    public Map<String, Object> postQuery(@RequestBody Map<String, Object> param) {
+
+        try {
+            String query = (String) param.get("query");
+            Map variables = (Map) param.get("variables");
+            String operationName = (String) param.get("operationName");
+
+            return executeQuery(query, operationName, variables);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Map<String, Object> error = new HashMap<>();
+        error.put("status", 500);
+        error.put("msg", "fail...");
+        return error;
+    }
+
+    private Map<String, Object> executeQuery(String query, String operationName, Map<String, Object> variables){
+        ExecutionInput executionInput = ExecutionInput.newExecutionInput()
+                .query(query)
+                .operationName(operationName)
+                .variables(variables)
+                .build();
+        return graphQL.execute(executionInput).toSpecification();
     }
 }
