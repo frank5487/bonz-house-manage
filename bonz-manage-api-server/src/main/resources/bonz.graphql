@@ -6,6 +6,7 @@ type BonzQuery {
     HouseResources(id: Long): HouseResources
     HouseResourcesList(page: Int, pageSize: Int): TableResult
     IndexAdList: IndexAdResult
+    MapHouseData(lng:Float,lat:Float,zoom:Int):MapHouseDataResult
 }
 
 type HouseResources {
@@ -50,4 +51,13 @@ type IndexAdResult{
 
 type IndexAdResultData{
     original: String
+}
+
+type MapHouseDataResult {
+    list:[MapHouseXY]
+}
+
+type MapHouseXY {
+    x: Float
+    y: Float
 }

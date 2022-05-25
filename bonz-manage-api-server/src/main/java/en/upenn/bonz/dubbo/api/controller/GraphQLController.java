@@ -65,7 +65,6 @@ public class GraphQLController {
 
     /**
      * post GrahphQL query
-     * @param query
      * @return
      */
     /*
@@ -92,8 +91,17 @@ public class GraphQLController {
 
     @PostMapping("/ad")
     @ResponseBody
-    public Map<String, Object> postQuery(@RequestBody Map<String, Object> param) {
+    public Map<String, Object> postAdQuery(@RequestBody Map<String, Object> param) {
+        return postQuery(param);
+    }
 
+    @PostMapping("/map")
+    @ResponseBody
+    public Map<String, Object> postMapQuery(@RequestBody Map<String, Object> param) {
+        return postQuery(param);
+    }
+
+    private Map<String, Object> postQuery(Map<String, Object> param) {
         try {
             String query = (String) param.get("query");
             Map variables = (Map) param.get("variables");

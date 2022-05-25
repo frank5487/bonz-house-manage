@@ -19,6 +19,10 @@ spring:
       file-size-threshold: 20MB
       max-file-size: 50MB
       max-request-size: 100MB
+  #mongo
+  data:
+    mongodb:
+      uri: mongodb://192.168.159.130:27017/testdb
 
 server:
   port: 18080
