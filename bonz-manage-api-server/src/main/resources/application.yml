@@ -41,12 +41,12 @@ dubbo:
 cloud:
   aws:
     credentials:
-      access-key: AKIAUCNWMYGKCCAPIVDL
-      secret-key: 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
+      access-key:
+      secret-key:
     region:
-      static: us-east-1
+      static:
     stack:
       auto: false
 application:
   bucket:
-    name: bonz-house-project
+    name:
