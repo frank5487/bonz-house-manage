@@ -1,4 +1,4 @@
-# bonz-house-manage
+# bonz-house-manage (mainly focus on backend)
 
 ## Abstract
 Instead of applying MVC structure to build the web application, I adopt RPC structure (distributed microservices)
